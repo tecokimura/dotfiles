@@ -1,9 +1,24 @@
 
-# install
-sudo vi /etc/shells
+# dotfiles
+
+新しいMacを設定するにあたりchezmoi を使ってやってみた
+
+## How to
+
+### URL
+
+https://www.chezmoi.io/install/
+
+### Setup command
+
 ```
-/opt/homebrew/bin/zsh
+$ sh -c "$(curl -fsLS get.chezmoi.io)"
 ```
 
-$ chsh -s /opt/homebrew/bin/zsh
+or 
+
 ```
+$ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply $GITHUB_USERNAME
+```
+
+
