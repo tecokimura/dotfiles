@@ -1,13 +1,9 @@
+{{ if eq .chezmoi.os "darwin" }}
 #!/bin/bash
 
-{{ if eq .chezmoi.os "darwin" }}
-
 nodebrew setup
-
 nodebrew install-binary stable
-
 NODEBREW_VER=`nodebrew ls | head -1`
-
 nodebrew use $NODEBREW_VER
 
 {{ end }}

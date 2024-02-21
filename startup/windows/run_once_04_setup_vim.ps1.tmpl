@@ -1,0 +1,3 @@
+{{ if eq .chezmoi.os "windows" }}
+cmd /c "mklink %USERPROFILE%\_vimrc %USERPROFILE%\.vimfiles\_vimrc"
+{{ end }}
