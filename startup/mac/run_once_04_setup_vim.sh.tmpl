@@ -1,5 +1,5 @@
-{{ if eq .chezmoi.os "darwin" }}
 #!/bin/bash
+{{ if eq .chezmoi.os "darwin" }}
 
 if [ ! -e ~/.vimrc ]; then
     ln -s ~/vimfiles/vimrc.vim ~/.vimrc
