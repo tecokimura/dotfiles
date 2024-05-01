@@ -5,9 +5,15 @@
 
 ## How to
 
+brew で chezmoi をインストールしてからやるのが簡単そう。
+
+brew install chezmoi
+
 ### URL
 
-https://www.chezmoi.io/install/
+https://www.chezmoi.io/
+
+brew install chezmoi
 
 ### Setup command
 

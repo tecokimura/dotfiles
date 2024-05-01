@@ -73,10 +73,8 @@ nnoremap <C-k> "_dg_
 inoremap <C-k> <ESC>"_dg_i
 
 " 補完機能の設定 -> https://note.com/yasukotelin/n/na87dc604e042
-set completeopt=menuone,noinsert
-inoremap <expr><CR> pumvisible() ? "<C-y>" : "<CR>"
-inoremap <expr><C-n> pumvisible() ? "<Down>" : "<C-n>"
-inoremap <expr><C-p> pumvisible() ? "<Up>" : "<C-p>"
+inoremap <silent><expr> <Enter> coc#pum#visible() ? coc#pum#confirm() : "\<Enter>"
+
 
 " サーチした検索語を画面中央に持ってくる
 nmap n nzz
@@ -124,7 +122,7 @@ set iminsert=0
 set imsearch=-1
 
 set cursorline     " カーソル行の背景色を変える
-set cursorcolumn   " カーソル位置のカラムの背景色を変える
+" set cursorcolumn   " カーソル位置のカラムの背景色を変える
 set cmdheight=2    " メッセージ表示欄を2行確保
 set showcmd        " 対応する括弧を強調表示
 set showmatch      " 対応する括弧を強調表示
@@ -302,21 +300,7 @@ let g:airline#extensions#default#layout = [
     \ [ 'x', 'y', 'warning', 'error']
     \ ]
 
-" for CoC
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return ! col || getline('.')[col - 1] =~ '\s'
-endfunction
-
-inoremap <silent><expr> <Tab>
-    \ pumvisible() ? "\<C-n>" :
-    \ <SID>check_back_space() ? "\<Tab>" :
-    \ coc#refresh()
-" Tab is next, S-Tab is prev
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-tab>"
-
-
+" 
 " for Fzf
 if executable('rg')
   function! FZGrep(query, fullscreen)
