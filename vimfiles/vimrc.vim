@@ -239,6 +239,10 @@ Plug 'yuki-yano/fern-preview.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+" I am trying now
+Plug 'mechatroner/rainbow_csv'
+Plug 'junegunn/vim-easy-align'
+
 " CoC
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -256,6 +260,10 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 
 " GitHub Copilot
 Plug 'github/copilot.vim'
+
+" DB
+Plug 'tpope/vim-dadbod'
+Plug 'kristijanhusak/vim-dadbod-ui'
 
 call plug#end()
 
@@ -329,3 +337,21 @@ let g:copilot_filetypes = {
     \ 'python': v:true,
     \ 'php': v:true,
     \ }
+
+
+" for vim-easy-align
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+
+
+" for dadbob-ui 
+" https://qiita.com/AkioYokoyama/items/ee1a9c1e31f61a224105
+let g:db_ui_save_location = '~/.vim/dadbod-ui'
+let g:db_ui_table_helpers = {
+   \'mysql': {
+   \      'Desc': 'DESC {table}',
+   \     'Create Table': 'SHOW CREATE TABLE {table}',
+   \     'Comment': 'SHOW FULL COLUMNS FROM {table}',
+   \     'Count': 'SELECT COUNT(*) FROM {table}'
+   \   }
+   \ }
