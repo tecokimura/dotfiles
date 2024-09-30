@@ -350,8 +350,10 @@ let g:db_ui_save_location = '~/.vim/dadbod-ui'
 let g:db_ui_table_helpers = {
    \'mysql': {
    \      'Desc': 'DESC {table}',
-   \     'Create Table': 'SHOW CREATE TABLE {table}',
+   \     'Show Create Table': 'SHOW CREATE TABLE {table}',
    \     'Comment': 'SHOW FULL COLUMNS FROM {table}',
    \     'Count': 'SELECT COUNT(*) FROM {table}'
+   \     'Insert': '-- INSERT INTO {table} c1, c1 VALUES (1, 2)'
+   \     'Update': '-- UPDATE {table} SET c1=100, c2=200 where id = 1'
    \   }
    \ }
