@@ -1,0 +1,4 @@
+[
+    {"url":"mysql://@/DATABASE_NAME?defaults-grou-suffix=_CLIENT_NAME", "name":"local-PROJECTNAME"}
+]
+
