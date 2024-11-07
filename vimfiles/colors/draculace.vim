@@ -34,8 +34,8 @@ hi Normal ctermfg=231 ctermbg=235  guifg=#f8f8f2 guibg=#282a36 gui=NONE
 hi Visual ctermfg=160 ctermbg=16 cterm=NONE guifg=#d60000 guibg=#500000 gui=NONE
 hi Cursor ctermfg=NONE ctermbg=234 cterm=NONE guifg=#282a36 guibg=#f8f8f0 gui=NONE
 hi CursorLine ctermfg=NONE ctermbg=232 cterm=NONE guifg=NONE guibg=#44475a gui=NONE
-hi LineNr ctermfg=250 ctermbg=16 cterm=italic guifg=#dd99ff guibg=#383a46 gui=NONE
-hi CursorLineNr ctermfg=205 ctermbg=16 cterm=bold guifg=#f1fa8c guibg=#44475a gui=NONE
+hi LineNr ctermfg=250 ctermbg=16 cterm=NONE guifg=#dd99ff guibg=#383a46 gui=NONE
+hi CursorLineNr ctermfg=205 ctermbg=16 cterm=italic,bold guifg=#f1fa8c guibg=#44475a gui=NONE
 hi VertSplit ctermfg=250 ctermbg=16 cterm=NONE guifg=#64666d guibg=#64666d gui=bold "vsp
 hi Comment ctermfg=105 ctermbg=NONE cterm=NONE guifg=#ffddff guibg=NONE gui=NONE
 hi Number ctermfg=219 ctermbg=NONE cterm=NONE guifg=#bd93f9 guibg=NONE gui=NONE
