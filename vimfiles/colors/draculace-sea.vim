@@ -1,17 +1,17 @@
-" draculace theme v1.3.0
-" colorpallet : https://www.google.co.jp/search?q=%238be9fd&oq=%238be9fd&aqs=chrome..69i57.344j0j9&sourceid=chrome&ie=utf-8
+" Draculace Theme v1.3.0
+" Colorpallet : https://www.google.co.jp/search?q=%238be9fd&oq=%238be9fd&aqs=chrome..69i57.344j0j9&sourceid=chrome&ie=UTF-8
 "
 " https://github.com/zenorocha/dracula-theme
 "
-" copyright 2016, all rights reserved
+" Copyright 2016, All rights reserved
 "
-" code licensed under the mit license
+" Code licensed under the MIT license
 " http://zenorocha.mit-license.org
 "
-" @author trevor heins <@heinst>
-" @author erton ribeiro <nuxlli@gmail.com>
-" @author zeno rocha <hi@zenorocha.com>
-" @author kaz kimura <tecokimura@gmail.com>
+" @author Trevor Heins <@heinst>
+" @author erton Ribeiro <nuxlli@gmail.com>
+" @author Zeno Rocha <hi@zenorocha.com>
+" @author Kaz Kimura <tecokimura@gmail.com>
 
 set background=dark
 highlight clear
@@ -22,21 +22,13 @@ endif
 
 let g:colors_name = "draculace"
 
-" White=231
-" Dark black=16
-" BG black=235
-" Cursor black=232
-" Pink=219
-" Gray=250
-"
-
-hi Normal ctermfg=231 ctermbg=235  guifg=#f8f8f2 guibg=#282a36 gui=NONE
-hi Visual ctermfg=160 ctermbg=16 cterm=NONE guifg=#d60000 guibg=#500000 gui=NONE
+hi Normal ctermfg=231 ctermbg=23  guifg=#f8f8f2 guibg=#282a36 gui=NONE
+hi Visual ctermfg=196 ctermbg=52 cterm=NONE guifg=#d60000 guibg=#500000 gui=NONE
 hi Cursor ctermfg=NONE ctermbg=234 cterm=NONE guifg=#282a36 guibg=#f8f8f0 gui=NONE
-hi CursorLine ctermfg=NONE ctermbg=232 cterm=NONE guifg=NONE guibg=#44475a gui=NONE
-hi LineNr ctermfg=250 ctermbg=16 cterm=italic guifg=#dd99ff guibg=#383a46 gui=NONE
-hi CursorLineNr ctermfg=205 ctermbg=16 cterm=bold guifg=#f1fa8c guibg=#44475a gui=NONE
-hi VertSplit ctermfg=250 ctermbg=16 cterm=NONE guifg=#64666d guibg=#64666d gui=bold "vsp
+hi CursorLine ctermfg=NONE ctermbg=233 cterm=NONE guifg=NONE guibg=#44475a gui=NONE
+hi LineNr ctermfg=228 ctermbg=16 cterm=italic guifg=#dd99ff guibg=#383a46 gui=NONE
+hi CursorLineNr ctermfg=199 ctermbg=16 cterm=bold guifg=#f1fa8c guibg=#44475a gui=NONE
+hi VertSplit ctermfg=231 ctermbg=30 cterm=NONE guifg=#64666d guibg=#64666d gui=bold "vsp
 hi Comment ctermfg=105 ctermbg=NONE cterm=NONE guifg=#ffddff guibg=NONE gui=NONE
 hi Number ctermfg=219 ctermbg=NONE cterm=NONE guifg=#bd93f9 guibg=NONE gui=NONE
 hi Character ctermfg=173 ctermbg=NONE cterm=NONE guifg=#bd93f9 guibg=NONE gui=NONE
@@ -71,16 +63,8 @@ hi ColorColumn ctermfg=NONE ctermbg=236 cterm=NONE guifg=NONE guibg=#3d3f49 gui=
 hi StatusLine ctermfg=231 ctermbg=236 cterm=bold guifg=#f8f8f2 guibg=#64666d gui=bold
 hi StatusLineNC ctermfg=231 ctermbg=236 cterm=NONE guifg=#f8f8f2 guibg=#64666d gui=NONE
 
-hi Pmenu ctermfg=7 ctermbg=238 cterm=NONE guifg=#f0f0f0 guibg=#44475a gui=NONE " Fzf window
-hi PmenuSel ctermfg=1 ctermbg=2 cterm=NONE guifg=#f60000 guibg=#500000 gui=NONE " Fzf selected
-
-hi CocMenuSel  ctermfg=212 ctermbg=232 cterm=bold guifg=#f0f0f0 guibg=#44475a gui=NONE "Coc補完選択
-hi CocFloating ctermfg=231 ctermbg=238 guibg=#3f3f3f "Coc補完Window
-
-" for Fzf colors
-hi! link FzfNormal Pmenu
-hi! link FzfNormalPlus CocMenuSel
-
+hi Pmenu ctermfg=1 ctermbg=29 cterm=NONE guifg=#f0f0f0 guibg=#44475a gui=NONE
+hi PmenuSel ctermfg=250 ctermbg=1 cterm=NONE guifg=#f60000 guibg=#500000 gui=NONE
 
 hi Folded ctermfg=61 ctermbg=235 cterm=NONE guifg=#ffddff guibg=#282a36 gui=NONE
 hi SignColumn ctermfg=246 ctermbg=235 cterm=NONE guifg=#909194 guibg=#44475a gui=NONE

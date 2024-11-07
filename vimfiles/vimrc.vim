@@ -61,7 +61,8 @@ nnoremap <Leader>f :Fern . -reveal=% -drawer -toggle -width=30<CR>
 
 " FZF -> https://momozo.tech/2021/03/08/fzf-vim%E3%81%A8ripgrep%E3%81%A7%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%A8%E5%85%A8%E6%96%87%E3%82%92%E6%9B%96%E6%98%A7%E6%A4%9C%E7%B4%A2%E3%81%99%E3%82%8B/
 :nnoremap <Leader>e :FZF<CR>
-:nnoremap <Leader>r :Rg
+:nnoremap <Leader>p :GFiles<CR>
+:nnoremap <Leader>r :Rg<CR>
 :nnoremap <Leader>b :Buffers<CR>
 :nnoremap <Leader>w :Windows<CR>
 :nnoremap <Leader>h :History<CR>
@@ -311,6 +312,22 @@ let g:airline#extensions#default#layout = [
 " 
 " for Fzf
 if executable('rg')
+
+  let g:fzf_colors =
+    \ { 'fg':      ['fg', 'FzfNormal', 'Normal'],
+      \ 'bg':      ['bg', 'FzfNormal', 'Normal'],
+      \ 'hl':      ['fg', 'Comment'],
+      \ 'fg+':     ['fg', 'FzfNormalPlus', 'CursorLine', 'CursorColumn', 'Normal'],
+      \ 'bg+':     ['bg', 'FzfNormalPlus','CursorLine', 'CursorColumn'],
+      \ 'hl+':     ['fg', 'Statement'],
+      \ 'info':    ['fg', 'PreProc'],
+      \ 'border':  ['fg', 'Ignore'],
+      \ 'prompt':  ['fg', 'Conditional'],
+      \ 'pointer': ['fg', 'Exception'],
+      \ 'marker':  ['fg', 'Keyword'],
+      \ 'spinner': ['fg', 'Label'],
+      \ 'header':  ['fg', 'Comment'] }
+
   function! FZGrep(query, fullscreen)
     " --hidden 隠しファイルも隠しディレクトリも含める
     " --follow シンボリックリンクも含める
@@ -326,6 +343,8 @@ if executable('rg')
   " RGマンドを定義。同名コマンドが定義されていた場合上書きする
   " RGコマンドはFZGrep関数を呼び出す
   command! -nargs=* -bang RG call FZGrep(<q-args>, <bang>0)
+
+
 endif
 
 

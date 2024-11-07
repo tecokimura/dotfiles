@@ -1,2 +1,4 @@
 vimfiles/plugged/
-vimfiles/dadbod-ui/*.json
+/vimfiles/dadbod-ui/*
+!/vimfiles/dadbod-ui/connections.json.example
+
