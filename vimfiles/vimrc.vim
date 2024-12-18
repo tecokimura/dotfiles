@@ -1,4 +1,15 @@
 "======
+"
+" w 次の単語の先頭
+" e 単語の終わり 
+" b 前の単語の先頭
+" <C-t> インデントを押す
+" <C-d> インデントを戻す
+"
+" 整形する
+"   gaip=
+"   gaip*|
+" ,e ウインドウリサイズ
 "                   ___           ___           ___           ___                       ___           ___           ___           ___     
 "       ___        /  /\         /  /\         /  /\         /__/|        ___          /__/\         /__/\         /  /\         /  /\    
 "      /  /\      /  /:/_       /  /:/        /  /::\       |  |:|       /  /\        |  |::\        \  \:\       /  /::\       /  /::\   
@@ -20,13 +31,24 @@ set runtimepath+=~/vimfiles
 " 
 "=========:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-" 重複しなそうなので追加
 inoremap <C-b> <Left>
 inoremap <C-f> <Right>
+inoremap <C-p> <Up>
+inoremap <C-n> <Down>
+
+inoremap <C-e> <C-o>g_
+nnoremap <C-e> g_
+nnoremap <C-a> ^
+
+inoremap <silent> jj <ESC>
 
 " バッファ切り替えを入れる
 nmap <C-p> <Plug>AirlineSelectPrevTab
 nmap <C-n> <Plug>AirlineSelectNextTab
+
+" 検索のハイライト
+set hlsearch
+nnoremap <ESC><ESC> :nohlsearch<CR>
 
 " Leader key
 let mapleader = ","
@@ -57,14 +79,14 @@ map T <Plug>(easymotion-Tl)
 
 
 " Fern -> https://qiita.com/youichiro/items/b4748b3e96106d25c5bc
-nnoremap <Leader>f :Fern . -reveal=% -drawer -toggle -width=30<CR>
+nnoremap <Leader>f :Fern . -reveal=% -drawer -toggle -width=25<CR>
 
 " FZF -> https://momozo.tech/2021/03/08/fzf-vim%E3%81%A8ripgrep%E3%81%A7%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%A8%E5%85%A8%E6%96%87%E3%82%92%E6%9B%96%E6%98%A7%E6%A4%9C%E7%B4%A2%E3%81%99%E3%82%8B/
 :nnoremap <Leader>e :FZF<CR>
-:nnoremap <Leader>p :GFiles<CR>
+:nnoremap <Leader>g :GFiles<CR>
 :nnoremap <Leader>r :Rg<CR>
 :nnoremap <Leader>b :Buffers<CR>
-:nnoremap <Leader>w :Windows<CR>
+" :nnoremap <Leader>w :Windows<CR>
 :nnoremap <Leader>h :History<CR>
 
 
@@ -73,8 +95,17 @@ nnoremap x "_x
 nnoremap <C-k> "_dg_
 inoremap <C-k> <ESC>"_dg_i
 
-" 補完機能の設定 -> https://note.com/yasukotelin/n/na87dc604e042
-inoremap <silent><expr> <Enter> coc#pum#visible() ? coc#pum#confirm() : "\<Enter>"
+" " 補完機能の設定 -> https://qiita.com/totto2727/items/d0844c79f97ab601f13b
+" set completeopt=menuone,noinsert
+" 
+" " autocomplete
+" inoremap <silent><expr> <C-n> coc#pum#visible() ? coc#pum#next(1) : "\<C-n>"
+" inoremap <silent><expr> <C-p> coc#pum#visible() ? coc#pum#prev(1) : "\<C-p>"
+" inoremap <silent><expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<C-j>"
+" inoremap <silent><expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"
+" inoremap <silent><expr> <Tab> coc#pum#visible() ? coc#pum#confirm() : "\<Tab>"
+" inoremap <silent><expr> <Esc> coc#pum#visible() ? coc#pum#cancel() : "\<Esc>"
+" inoremap <silent><expr> <C-h> coc#pum#visible() ? coc#pum#cancel() : "\<C-h>"
 
 
 " サーチした検索語を画面中央に持ってくる
@@ -98,17 +129,25 @@ set history=1024
 set autochdir
 
 " インデント
-set tabstop=4
-set shiftwidth=4
 set expandtab " tabではなくspaceを入れる
+set tabstop=4
+set softtabstop=4
 set autoindent
+set smartindent
+set shiftwidth=4
+
+
+" 折り返ししない
 set nowrap
+
+" Diff 
+set diffopt=iwhite
 
 " Encoding
 set encoding=utf-8
 set fileencodings=utf-8,iso-2022-jp,cp932,sjis,euc-jp
 
-syntax on " シンタックスON
+syntax enable " シンタックスON
 
 set nonumber " 行数非表示
 
@@ -131,8 +170,23 @@ set helplang=ja,en " ヘルプを画面いっぱいに開く
 set helpheight=999 " ヘルプを画面いっぱいに開く
 set list           " 不可視文字を表示
 " 不可視文字の表示記号指定
-set listchars=tab:▸\ ,eol:↲,extends:❯,precedes:❮
+set listchars=tab:>-,eol:↲,extends:❯,precedes:❮
 
+
+
+if has("autocmd")
+  "ファイルタイプの検索を有効にする
+  filetype plugin on
+  "ファイルタイプに合わせたインデントを利用
+  filetype indent on
+  "sw=shiftwidth, sts=softtabstop, ts=tabstop, et=expandtabの略
+  autocmd FileType json        setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType html        setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType css         setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType scss        setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType sass        setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType javascript  setlocal sw=2 sts=2 ts=2 et
+endif
 
 "======
 " status line"
@@ -193,6 +247,7 @@ set viminfo+=n~/vimfiles/viminfo.txt
 :command! CsOwl colorscheme night-owl
 :command! CsIce colorscheme iceberg
 :command! CsAce colorscheme draculace
+:command! CsGrm colorscheme gruvbox-material
 
 " Font size の変更(for GUI)
 :command! Font10 set guifont=FirgeNerd:h10
@@ -244,8 +299,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'mechatroner/rainbow_csv'
 Plug 'junegunn/vim-easy-align'
 
-" CoC
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" " CoC
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -254,10 +309,10 @@ Plug 'junegunn/fzf.vim'
 " Color scheme
 Plug 'cocopon/iceberg.vim'
 Plug 'haishanh/night-owl.vim'
+Plug 'sainnhe/gruvbox-material'
 
 " Syntax
 Plug 'leafgarland/typescript-vim'
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
 " GitHub Copilot
 Plug 'github/copilot.vim'
@@ -265,6 +320,13 @@ Plug 'github/copilot.vim'
 " DB
 Plug 'tpope/vim-dadbod'
 Plug 'kristijanhusak/vim-dadbod-ui'
+
+
+" IndentLine
+Plug 'Yggdroot/indentLine'
+
+" Syntax for json :https://qiita.com/karur4n/items/a26007236c59c5fb8735
+Plug 'elzr/vim-json'
 
 call plug#end()
 
@@ -322,7 +384,7 @@ if executable('rg')
       \ 'hl+':     ['fg', 'Statement'],
       \ 'info':    ['fg', 'PreProc'],
       \ 'border':  ['fg', 'Ignore'],
-      \ 'prompt':  ['fg', 'Conditional'],
+      \ 'prompt':  ['fg', 'Normal', 'Conditional'],
       \ 'pointer': ['fg', 'Exception'],
       \ 'marker':  ['fg', 'Keyword'],
       \ 'spinner': ['fg', 'Label'],
@@ -348,7 +410,7 @@ if executable('rg')
 endif
 
 
-
+    
 " GitHub Copilot
 let g:copilot_filetypes = {
     \ '*': v:true,
@@ -376,3 +438,11 @@ let g:db_ui_table_helpers = {
    \     'Update': '-- UPDATE {table} SET c1=100, c2=200 where id = 1'
    \   }
    \ }
+
+
+"
+"
+let g:winresizer_start_key = '<Leader>w'
+let g:winresizer_vert_resize=5
+
+let g:vim_json_syntax_conceal = 0

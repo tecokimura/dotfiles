@@ -65,7 +65,7 @@ hi Directory ctermfg=87 ctermbg=NONE cterm=NONE guifg=#bd93f9 guibg=NONE gui=NON
 hi IncSearch ctermfg=235 ctermbg=229 cterm=none guifg=#500000 guibg=#d60000 gui=none
 hi Search ctermfg=235 ctermbg=229 cterm=none guifg=#f01717 guibg=NONE gui=none
 
-hi MatchParen ctermfg=1 ctermbg=255 cterm=bold,underline guifg=#ff79c6 guibg=NONE gui=underline
+hi MatchParen ctermfg=226 ctermbg=NONE cterm=bold,underline guifg=#ff79c6 guibg=NONE gui=underline " 対になるカッコの色
 
 hi CursorColumn ctermbg=234 cterm=NONE guifg=NONE guibg=#44475a gui=NONE
 hi ColorColumn ctermfg=NONE ctermbg=236 cterm=NONE guifg=NONE guibg=#3d3f49 gui=NONE
