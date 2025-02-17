@@ -11,7 +11,7 @@
 "
 " @author trevor heins <@heinst>
 " @author erton ribeiro <nuxlli@gmail.com>
-" @author zeno rocha <hi@zenorocha.com>
+" @AUTHOR ZENO ROCHA <HI@ZENOROCHA.COM>
 " @author kaz kimura <tecokimura@gmail.com>
 
 set background=dark
@@ -155,6 +155,7 @@ hi cssBraces ctermfg=NONE ctermbg=NONE cterm=NONE guifg=NONE guibg=NONE gui=NONE
 hi TabLineFill  guifg=#333333 guibg=#282a36 gui=none
 hi TabLine      guifg=#666666 guibg=#282a36 gui=none
 hi TabLineSel   guifg=WHITE guibg=#282a36 gui=none
+
 
 " Elixir {{{
 hi elixirAtom ctermfg=81 ctermbg=NONE cterm=NONE guifg=#66d9ef guibg=NONE gui=NONE "before italic"

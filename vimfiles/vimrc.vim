@@ -38,7 +38,7 @@ inoremap <C-n> <Down>
 
 inoremap <C-e> <C-o>g_
 nnoremap <C-e> g_
-nnoremap <C-a> ^
+" nnoremap <C-a> ^
 
 inoremap <silent> jj <ESC>
 
@@ -91,9 +91,9 @@ nnoremap <Leader>f :Fern . -reveal=% -drawer -toggle -width=25<CR>
 
 
 nnoremap Y y$
-nnoremap x "_x
-nnoremap <C-k> "_dg_
-inoremap <C-k> <ESC>"_dg_i
+nnoremap x "xx
+nnoremap <C-k> "kdg_
+inoremap <C-k> <ESC>"kdg_i
 
 " " 補完機能の設定 -> https://qiita.com/totto2727/items/d0844c79f97ab601f13b
 " set completeopt=menuone,noinsert
@@ -136,6 +136,8 @@ set autoindent
 set smartindent
 set shiftwidth=4
 
+" C-a, C-x を10進数判定にする
+set nf=""
 
 " 折り返ししない
 set nowrap
@@ -149,7 +151,7 @@ set fileencodings=utf-8,iso-2022-jp,cp932,sjis,euc-jp
 
 syntax enable " シンタックスON
 
-set nonumber " 行数非表示
+set number " 行数非表示
 
 set incsearch  " インクリメンタルサーチ
 set smartcase " 小文字なら区別しないが大文字なら区別する
@@ -180,12 +182,14 @@ if has("autocmd")
   "ファイルタイプに合わせたインデントを利用
   filetype indent on
   "sw=shiftwidth, sts=softtabstop, ts=tabstop, et=expandtabの略
-  autocmd FileType json        setlocal sw=2 sts=2 ts=2 et
-  autocmd FileType html        setlocal sw=2 sts=2 ts=2 et
-  autocmd FileType css         setlocal sw=2 sts=2 ts=2 et
-  autocmd FileType scss        setlocal sw=2 sts=2 ts=2 et
-  autocmd FileType sass        setlocal sw=2 sts=2 ts=2 et
-  autocmd FileType javascript  setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType json            setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType html            setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType css             setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType scss            setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType sass            setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType javascript      setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType typescript      setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType typescriptreact setlocal sw=2 sts=2 ts=2 et
 endif
 
 "======
@@ -244,10 +248,12 @@ set viminfo+=n~/vimfiles/viminfo.txt
 :command! ReloadSJIS e ++enc=sjis
 
 " カラースキームの変更
-:command! CsOwl colorscheme night-owl
-:command! CsIce colorscheme iceberg
+:command! CsNightOwl colorscheme night-owl
+:command! CsIceberg colorscheme iceberg
 :command! CsAce colorscheme draculace
-:command! CsGrm colorscheme gruvbox-material
+:command! CsLucario colorscheme lucario
+:command! CsTender colorscheme tender
+
 
 " Font size の変更(for GUI)
 :command! Font10 set guifont=FirgeNerd:h10
@@ -271,8 +277,6 @@ let g:netrw_altv = 1
 let g:netrw_sizestyle="H"
 let g:netrw_timefmt="%Y/%m/%d(%a) %H:%M:%S"
 let g:netrw_preview=1
-
-" colorscheme draculace
 
 
 
@@ -309,7 +313,9 @@ Plug 'junegunn/fzf.vim'
 " Color scheme
 Plug 'cocopon/iceberg.vim'
 Plug 'haishanh/night-owl.vim'
-Plug 'sainnhe/gruvbox-material'
+Plug 'raphamorim/lucario'
+Plug 'jacoborus/tender.vim'
+
 
 " Syntax
 Plug 'leafgarland/typescript-vim'
@@ -322,8 +328,10 @@ Plug 'tpope/vim-dadbod'
 Plug 'kristijanhusak/vim-dadbod-ui'
 
 
-" IndentLine
-Plug 'Yggdroot/indentLine'
+" IndentLine（これ入れるとシンタックスがおかしくなる）
+" Plug 'Yggdroot/indentLine'
+
+Plug 'preservim/vim-indent-guides'
 
 " Syntax for json :https://qiita.com/karur4n/items/a26007236c59c5fb8735
 Plug 'elzr/vim-json'
@@ -338,18 +346,24 @@ set helplang=ja,en
 " https://github.com/yuki-yano/fern-preview.vim
 "---------
 let g:fern#default_hidden=1
+let g:fern#renderer='nerdfont'
+let g:fern#renderer#nerdfont#indent_markers = 1
 
 function! s:fern_settings() abort
   nmap <silent> <buffer> p     <Plug>(fern-action-preview:toggle)
   nmap <silent> <buffer> <C-p> <Plug>(fern-action-preview:auto:toggle)
   nmap <silent> <buffer> <C-d> <Plug>(fern-action-preview:scroll:down:half)
   nmap <silent> <buffer> <C-u> <Plug>(fern-action-preview:scroll:up:half)
+  nmap <silent> <buffer> <Return> <Plug>(fern-action-open-or-expand)
+  nmap <silent> <buffer> <S-Return> <Plug>(fern-action-enter)
 endfunction
 
 augroup fern-settings
   autocmd!
   autocmd FileType fern call s:fern_settings()
 augroup END
+
+
 
 
 " Airline
@@ -445,4 +459,37 @@ let g:db_ui_table_helpers = {
 let g:winresizer_start_key = '<Leader>w'
 let g:winresizer_vert_resize=5
 
+" https://qiita.com/karur4n/items/a26007236c59c5fb8735
 let g:vim_json_syntax_conceal = 0
+
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_conceal_code_blocks = 0
+
+
+" vim-indent-guides
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_start_level = 2
+"let g:indent_guides_guide_size = 1
+let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'tagbar', 'unite']
+
+
+"====
+" ランダムでカラースキームを変えてみる
+"====
+let seed = srand()
+let randNum = rand(seed) % 100
+if  randNum < 10
+    colorscheme night-owl
+elseif randNum < 20
+    colorscheme iceberg
+elseif randNum < 30
+    colorscheme lucario
+elseif randNum < 40
+    colorscheme tender
+else
+    colorscheme draculace
+endif
+
+colorscheme draculace
+
+" let g:indentLine_conceallevel = 0
