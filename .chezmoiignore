@@ -1,1 +1,18 @@
 vimfiles/plugged/
+
+{{ if (eq .chezmoi.os "darwin") }}
+
+startup/windows/**
+
+{{ else if (eq .chezmoi.os "windows") }}
+
+startup/mac/**
+dot_Brewfile
+
+{{else}}
+
+startup/windows/**
+startup/mac/**
+dot_Brewfile
+
+{{end}}

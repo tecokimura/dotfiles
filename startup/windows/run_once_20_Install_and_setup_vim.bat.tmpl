@@ -1,0 +1,12 @@
+@echo off
+echo "====== START 20_Install_and_setup_vim.bat ========="
+
+echo "[ Vim ]"
+WinGet install -e --id vim.vim
+
+rem // ‘¶İ‚µ‚È‚¢ê‡‚ÉƒŠƒ“ƒN‚ğì¬‚·‚é
+if not exist "%USERPROFILE%\_vimrc"  (
+  cmd /c "mklink %USERPROFILE%\_vimrc %USERPROFILE%\vimfiles\vimrc.vim"
+)
+
+exit 0
