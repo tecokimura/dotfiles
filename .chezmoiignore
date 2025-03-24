@@ -3,16 +3,25 @@ vimfiles/plugged/
 {{ if (eq .chezmoi.os "darwin") }}
 
 startup/windows/**
+startup/ubuntu/**
+
+{{ else if (eq .chezmoi.os "linux") }}
+
+startup/mac/**
+startup/windows/**
+dot_Brewfile
 
 {{ else if (eq .chezmoi.os "windows") }}
 
 startup/mac/**
 dot_Brewfile
+startup/ubuntu/**
 
 {{else}}
 
-startup/windows/**
 startup/mac/**
 dot_Brewfile
+startup/ubuntu/**
+startup/windows/**
 
 {{end}}
