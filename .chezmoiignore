@@ -4,6 +4,7 @@ vimfiles/plugged/
 
 startup/windows/**
 startup/ubuntu/**
+startup/kali/**
 
 {{ else if (eq .chezmoi.os "linux") }}
 
@@ -11,17 +12,26 @@ startup/mac/**
 startup/windows/**
 dot_Brewfile
 
+{{          if (eq .chezmoi.osRelease.id "ubuntu") }}
+startup/kali/**
+{{          else if (eq .chezmoi.osRelease.id "kali") }}
+startup/ubuntu/**
+{{          end }}
+
 {{ else if (eq .chezmoi.os "windows") }}
 
 startup/mac/**
 dot_Brewfile
 startup/ubuntu/**
+startup/kali/**
 
 {{else}}
 
 startup/mac/**
 dot_Brewfile
 startup/ubuntu/**
+startup/kali/**
 startup/windows/**
 
 {{end}}
+

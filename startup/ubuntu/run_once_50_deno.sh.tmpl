@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [ -e ~/.deno ]; then
+    echo "Deno was already installed, so the installation was skipped"
+else
+    curl -fsSL https://deno.land/install.sh | sh
+fi

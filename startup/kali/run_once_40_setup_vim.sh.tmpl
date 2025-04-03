@@ -1,0 +1,13 @@
+#!/bin/bash
+if [ ! -e ~/.vimrc ]; then
+    ln -s ~/vimfiles/vimrc.vim ~/.vimrc
+fi
+
+if [ ! -e ~/.vim ]; then
+    ln -s ~/vimfiles ~/.vim
+fi
+
+
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+
