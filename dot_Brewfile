@@ -36,4 +36,4 @@ cask "postman"
 cask "vlc"
 cask "font-hackgen"
 cask "font-hackgen-nerd"
-mas "Bitwarden", id: 1352778147
+cask "kitty"

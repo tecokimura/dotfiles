@@ -1,2 +1,10 @@
 #!/bin/bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+if [ -e ~/.oh-my-zsh ]; then
+    echo "Oh-my-zsh was already installed, so the installation was skipped"
+else
+
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+fi
+
