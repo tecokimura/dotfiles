@@ -1,7 +1,8 @@
 #!/bin/bash
 
-if [ -e ~/.volta ]; then
+source ~/.bashrc
+
+if [ -f ~/.volta ]; then
     volta install node
 fi
 
-source ~/.zshrc
