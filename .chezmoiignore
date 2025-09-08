@@ -1,4 +1,5 @@
-vimfiles/plugged/
+vimfiles/plugged/**
+README.md
 
 {{ if (eq .chezmoi.os "darwin") }}
 
