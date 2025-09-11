@@ -473,23 +473,39 @@ let g:indent_guides_start_level = 2
 let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'tagbar', 'unite']
 
 
-"====
-" ランダムでカラースキームを変えてみる
-"====
-let seed = srand()
-let randNum = rand(seed) % 100
-if  randNum < 10
-    colorscheme night-owl
-elseif randNum < 20
-    colorscheme iceberg
-elseif randNum < 30
-    colorscheme lucario
-elseif randNum < 40
-    colorscheme tender
-else
-    colorscheme draculace
-endif
-
 colorscheme draculace
+" colorscheme tender
+" colorscheme lucario
+" colorscheme iceberg
+" colorscheme night-owl
 
 " let g:indentLine_conceallevel = 0
+
+"-------------------------------------------------------
+" Vimの起動時にプロジェクト固有の設定ファイルを読み込む
+"-------------------------------------------------------
+
+" g:loaded_local_vimrc が設定されていない場合のみ実行
+if !exists('g:loaded_local_vimrc')
+  " findfile()を使って.vimrc.localを検索する。
+  " `expand('<sfile>:p:h')`は、この.vimrcファイルのあるディレクトリパスを取得する。
+  " `getcwd()`は、Vimを起動した作業ディレクトリを取得する。
+  " ';'をつけることで親ディレクトリを遡って検索する。
+  " -1は、見つかったすべてのファイルをリストとして返すことを意味する。
+  let files = findfile('.vimrc.local', getcwd() . ';', -1)
+
+  " 読み込み可能なファイルをフィルタリングし、逆順にソートする
+  " (より上位のディレクトリから先に読み込み、設定を上書きするため)
+  let readable_files = reverse(filter(files, 'filereadable(v:val)'))
+
+  " 読み込み可能なファイルが見つかった場合
+  if !empty(readable_files)
+    " 見つかったファイルを一つずつ読み込む
+    for file in readable_files
+      execute 'source ' . fnameescape(file)
+    endfor
+    " 一度読み込んだことを示すフラグを設定
+    let g:loaded_local_vimrc = 1
+  endif
+endif
+
